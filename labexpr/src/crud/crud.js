@@ -8,8 +8,7 @@ export const buscar = (req, res) => {
 
 export const buscarId = (req, res) => {
   const id = parseInt(req.params.id);
-  const book = books.find(b => b.id === id);
-  
+  const book = books.find(b => b.id === id);  
   if (!book) {
     return res.status(404).json({ error: "Libro no encontrado" });
   }
@@ -19,11 +18,11 @@ export const buscarId = (req, res) => {
 
 export const crearLibro = (req, res) => {
   const { title, author, genre } = req.body;
-
   if (!title || !author || !genre) {
     return res.status(400).json({ 
       error: "Falta ingresar algun campo" 
     });
+
   }
 
   const nBook = {
@@ -54,15 +53,13 @@ export const actualizarLibro = (req, res) => {
 
   book.title = title;
   book.author = author;
-  book.genre = genre;
-  
+  book.genre = genre;  
   res.json(book);
 };
 
 export const eliminarLibro = (req, res) => {
   const id = parseInt(req.params.id);
   const index = books.findIndex(b => b.id === id);
-  
   if (index === -1) {
     return res.status(404).json({ error: "Libro no encontrado" });
   }
